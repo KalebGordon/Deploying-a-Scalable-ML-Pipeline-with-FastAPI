@@ -49,6 +49,12 @@ The following metrics were reported on various slices of categorical features:
 
 Please see `slice_output.txt` for a full breakdown of the metrics. 
 
+The overall metrics were:
+
+ Precision | Recall | F1 Score |
+|-----------|--------|----------|
+| 0.7879    | 0.7429 | 0.7647   |
+
 ## Ethical Considerations
 - **Bias in Data**: The model is trained on census data, which may reflect societal biases.
 - **Sensitive Attributes**: Features like race and gender could introduce bias in predictions.
