@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
-
 from ml.data import process_data
 from ml.model import (
     compute_model_metrics,
@@ -11,8 +10,6 @@ from ml.model import (
     save_model,
     train_model,
 )
-
-
 def main():
     # Define paths
     project_path = (
@@ -21,13 +18,10 @@ def main():
     data_path = os.path.join(project_path, "data", "census.csv")
     model_dir = os.path.join(project_path, "model")
     os.makedirs(model_dir, exist_ok=True)  
-
     print(f"Data path: {data_path}")
     data = pd.read_csv(data_path)
-
     # Split data
     train, test = train_test_split(data, test_size=0.2, random_state=42)
-
     # DO NOT MODIFY
     cat_features = [
         "workclass",
@@ -39,7 +33,6 @@ def main():
         "sex",
         "native-country",
     ]
-
     # Process data
     X_train, y_train, encoder, lb = process_data(
         train,
@@ -47,7 +40,6 @@ def main():
         label="salary",
         training=True,
     )
-
     X_test, y_test, _, _ = process_data(
         test,
         categorical_features=cat_features,
@@ -56,23 +48,18 @@ def main():
         encoder=encoder,
         lb=lb,
     )
-
     # Train and save the model
     model = train_model(X_train, y_train)
-
     model_path = os.path.join(model_dir, "model.pkl")
     encoder_path = os.path.join(model_dir, "encoder.pkl")
     save_model(model, model_path)
     save_model(encoder, encoder_path)
-
     # Load the model
     model = load_model(model_path)
-
     # Inference and metrics
     preds = inference(model, X_test)
     p, r, fb = compute_model_metrics(y_test, preds)
     print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}")
-
     # Compute performance on categorical slices
     with open("slice_output.txt", "w") as f:  
         for col in cat_features:
@@ -90,7 +77,5 @@ def main():
                 )
                 f.write(f"{col}: {slice_value}, Count: {count:,}\n")
                 f.write(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}\n")
-
-
 if __name__ == "__main__":
     main()
