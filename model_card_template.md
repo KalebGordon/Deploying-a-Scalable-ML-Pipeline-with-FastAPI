@@ -45,7 +45,6 @@ The following metrics were reported on various slices of categorical features:
 | marital-status  | Married-civ-spouse   | 0.7334    | 0.6877 | 0.7098   |
 | race            | White                | 0.7390    | 0.6366 | 0.6840   |
 | sex             | Female               | 0.7176    | 0.5236 | 0.6055   |
-| sex             | Male                 | 0.7420    | 0.6555 | 0.6960   |
 
 Please see `slice_output.txt` for a full breakdown of the metrics. 
 
@@ -53,7 +52,7 @@ The overall metrics were:
 
  Precision | Recall | F1 Score |
 |-----------|--------|----------|
-| 0.7879    | 0.7429 | 0.7647   |
+| 0.7516    | 0.6327 | 0.6869   |
 
 ## Ethical Considerations
 - **Bias in Data**: The model is trained on census data, which may reflect societal biases.
